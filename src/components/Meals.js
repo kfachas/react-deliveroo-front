@@ -11,13 +11,16 @@ const Meals = ({ data, values, setValues }) => {
             onClick={() => {
               const obj = { ...values };
               if (!obj.menu[elem.id]) {
+                obj.listId.push(elem.id);
+                console.log(obj.listId);
                 obj.menu[elem.id] = {
                   title: elem.title,
-                  counter: 0,
+                  counter: 1,
                   price: Number(elem.price),
                 };
+              } else {
+                obj.menu[elem.id].counter++;
               }
-              obj.menu[elem.id].counter += 1;
               obj.total += Number(elem.price);
               setValues(obj);
             }}

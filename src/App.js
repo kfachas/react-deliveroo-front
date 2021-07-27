@@ -10,7 +10,7 @@ library.add(faStar);
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
-  const [values, setValues] = useState({ total: 0, price: [], menu: [] });
+  const [values, setValues] = useState({ total: 0, menu: {}, listId: [] });
   useEffect(() => {
     const fetchData = async () => {
       try {

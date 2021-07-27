@@ -1,25 +1,46 @@
 const Shop = ({ values, setValues }) => {
-  console.log(values.menu);
   return (
     <div className="shop">
-      <button>Valider mon panier</button>
+      <button className="valid">Valider mon panier</button>
 
       {Number(values.total) === 0 ? (
         <span>Le panier est vide</span>
       ) : (
         <ul>
-          {values.menu.map((elem, index) => {
+          {values.listId.map((elem, index) => {
+            const obj = { ...values };
+            console.log(elem);
             return (
-              <li key={index}>
-                {elem.counter}
-                {elem.title}
-                {elem.price} €
-              </li>
+              obj.menu[elem].counter !== 0 && (
+                <li key={index}>
+                  <button
+                    onClick={() => {
+                      obj.menu[elem].counter -= 1;
+                      obj.total -= obj.menu[elem].price;
+                      setValues(obj);
+                    }}
+                  >
+                    -
+                  </button>
+                  {values.menu[elem].counter}
+                  <button
+                    onClick={() => {
+                      obj.menu[elem].counter += 1;
+                      obj.total += obj.menu[elem].price;
+                      setValues(obj);
+                    }}
+                  >
+                    +
+                  </button>
+                  {values.menu[elem].title}
+                  {values.menu[elem].price} €
+                </li>
+              )
             );
           })}
-          <li>Sous-total: {values.total}</li>
+          <li>Sous-total: {values.total.toFixed(2)}</li>
           <li>Frais de livraison : 2,50€ </li>
-          <span>Total :{values.total + 2.5} €</span>
+          <span>Total :{(values.total + 2.5).toFixed(2)} €</span>
         </ul>
       )}
     </div>

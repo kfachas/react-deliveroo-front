@@ -30,7 +30,9 @@ const Shop = ({ values, setValues }) => {
                     >
                       -
                     </button>
-                    {values.menu[elem].counter}
+                    <span style={{ margin: "0px 5px" }}>
+                      {values.menu[elem].counter}
+                    </span>
                     <button
                       onClick={() => {
                         obj.menu[elem].counter += 1;

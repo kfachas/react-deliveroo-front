@@ -13,7 +13,7 @@ const Shop = ({ values, setValues }) => {
       {Number(values.total) === 0 ? (
         <span>Le panier est vide</span>
       ) : (
-        <>
+        <div className="listShop">
           <ul>
             {values.listId.map((elem, index) => {
               const obj = { ...values };
@@ -21,29 +21,31 @@ const Shop = ({ values, setValues }) => {
               return (
                 obj.menu[elem].counter !== 0 && (
                   <li key={index}>
-                    <button
-                      onClick={() => {
-                        obj.menu[elem].counter -= 1;
-                        obj.total -= obj.menu[elem].price;
-                        setValues(obj);
-                      }}
-                    >
-                      -
-                    </button>
-                    <span style={{ margin: "0px 5px" }}>
-                      {values.menu[elem].counter}
-                    </span>
-                    <button
-                      onClick={() => {
-                        obj.menu[elem].counter += 1;
-                        obj.total += obj.menu[elem].price;
-                        setValues(obj);
-                      }}
-                    >
-                      +
-                    </button>
-                    {values.menu[elem].title}
-                    {values.menu[elem].price} €
+                    <div>
+                      <button
+                        onClick={() => {
+                          obj.menu[elem].counter -= 1;
+                          obj.total -= obj.menu[elem].price;
+                          setValues(obj);
+                        }}
+                      >
+                        -
+                      </button>
+                      <span style={{ margin: "0px 5px" }}>
+                        {values.menu[elem].counter}
+                      </span>
+                      <button
+                        onClick={() => {
+                          obj.menu[elem].counter += 1;
+                          obj.total += obj.menu[elem].price;
+                          setValues(obj);
+                        }}
+                      >
+                        +
+                      </button>
+                      <span> {values.menu[elem].title}</span>
+                    </div>
+                    <div>{values.menu[elem].price} €</div>
                   </li>
                 )
               );
@@ -51,14 +53,19 @@ const Shop = ({ values, setValues }) => {
           </ul>
           <div>
             <div>
-              <span>Sous-total: {values.total.toFixed(2)}</span>
-              <span>Frais de livraison : 2,50€</span>
+              <span>Sous-total:</span>
+              <span>{values.total.toFixed(2)} €</span>
             </div>
             <div>
-              <span>Total :{(values.total + 2.5).toFixed(2)} €</span>
+              <span>Frais de livraison :</span>
+              <span>2,50 €</span>
+            </div>
+            <div>
+              <span>Total :</span>
+              <span>{(values.total + 2.5).toFixed(2)} €</span>
             </div>
           </div>
-        </>
+        </div>
       )}
     </div>
   );

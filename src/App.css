@@ -123,12 +123,35 @@ main {
   overflow: hidden;
   overflow-y: scroll;
 }
-/* #00CCBC  */
-.shop li {
+
+.listShop li {
   padding: 10px 0;
+  display: flex;
+  flex-wrap: nowrap;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.shop ul button {
+.listShop li > div:first-child {
+  display: flex;
+  flex-direction: row;
+  width: 225px;
+  border-right: 1px solid black;
+  margin-right: 5px;
+}
+
+.listShop li > div:first-child button {
+  margin-right: 5px;
+}
+
+.listShop li > div:last-child {
+  width: 50px;
+  display: flex;
+  flex-wrap: nowrap;
+}
+.listShop button {
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   background-color: white;
   color: #00ccbc;
@@ -136,16 +159,14 @@ main {
   cursor: pointer;
 }
 
-.shop > div > div {
-  text-align: center;
-  width: 300px;
+.listShop > div > div {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  padding: 5px;
 }
-
-.shop > div > div:first-child {
-  border-bottom: 1px solid rgb(179, 178, 178);
-  box-shadow: darkgoldenrod;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+.listShop > div > div:last-child {
+  border-top: 1px solid rgb(179, 178, 178);
 }
 
 /* categories */

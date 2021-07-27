@@ -1,11 +1,27 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-const Meals = ({ data }) => {
+const Meals = ({ data, values, setValues }) => {
   return (
     <>
       {data.map((elem, index) => {
         return (
-          <div className="meals" key={index}>
+          <div
+            className="meals"
+            key={elem.id}
+            onClick={() => {
+              const obj = { ...values };
+              if (!obj.menu[elem.id]) {
+                obj.menu[elem.id] = {
+                  title: elem.title,
+                  counter: 0,
+                  price: Number(elem.price),
+                };
+              }
+              obj.menu[elem.id].counter += 1;
+              obj.total += Number(elem.price);
+              setValues(obj);
+            }}
+          >
             <div>
               <h3>{elem.title}</h3>
               {elem.description !== "" && <p>{elem.description}</p>}

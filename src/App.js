@@ -10,6 +10,7 @@ library.add(faStar);
 function App() {
   const [data, setData] = useState();
   const [isLoading, setIsLoading] = useState(true);
+  const [values, setValues] = useState({ total: 0, price: [], menu: [] });
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -45,8 +46,12 @@ function App() {
         </div>
       </div>
       <main>
-        <Categories data={data.categories} />
-        <Shop />
+        <Categories
+          data={data.categories}
+          values={values}
+          setValues={setValues}
+        />
+        <Shop setValues={setValues} values={values} />
       </main>
     </div>
   );
